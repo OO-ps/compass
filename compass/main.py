@@ -1,6 +1,8 @@
 from geocoder import get_latlong
+from ways import get_ways
 
 origin = input("Please enter your current location: ")
 dest = input("Please enter destination: ")
 address_list = [origin, dest]
-print(get_latlong(address_list))
+coords = get_latlong(address_list)
+print(get_ways(*coords))
