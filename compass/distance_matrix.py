@@ -6,8 +6,8 @@ key = "AIzaSyC6rh33flbFuQUaKgU4uOP7u9SkSPO-AKU"
 
 
 def get_distance_matrix(origins, dests):
-    origins = [o.replace(' ', '+') for o in origins]
-    dests = [d.replace(' ', '+') for d in dests]
+    origins = [str(o[0]) + ',' + str(o[1]) for o in origins]
+    dests = [str(d[0]) + ',' + str(d[1]) for d in dests]
     origins_param = '|'.join(origins)
     dests_param = '|'.join(dests)
     req_url = api_url + params.format(origins_param=origins_param,
@@ -19,6 +19,6 @@ def get_distance_matrix(origins, dests):
     for r in row_elements:
         row = []
         for d in r:
-            row.append(d['distance']['text'])
+            row.append(d['distance']['value'] + d['duration']['value'])
         dist_mat.append(row)
     return dist_mat
